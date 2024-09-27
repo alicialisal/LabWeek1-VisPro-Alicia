@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'loop.dart';
 
 void main() {
@@ -20,14 +22,17 @@ void main() {
   // Loop through the sorted array
   while (i > 0) {
     // Check if the current item can fit in the remaining space
-    if (barangbawaan[i-1][1] <= maks - isi) {
-      if (barangbawaan[i-1][2] > barangbawaan[i-2][2])
-      {
-        barangterpilih.add(barangbawaan[i-1][0]);  // Add the name of the selected item
-        isi = isi + barangbawaan[lenarr-1][1];          // Add the weight of the selected item
+    if (barangbawaan[i - 1][1] <= maks - isi) {
+      // Handle the case where i > 1 to avoid accessing an out-of-range index
+      if (i > 1 && barangbawaan[i - 2][2] > barangbawaan[i - 1][2]) {
+        i--; // Skip the current item if it's less valuable
+        continue;
+      } else {
+        barangterpilih.add(barangbawaan[i - 1][0]);  // Add the name of the selected item
+        isi += barangbawaan[i - 1][1];               // Add the weight of the selected item
       }
     }
-    i--;
+    i--; // Move to the previous item in the list
   }
 
   // Print the selected items
@@ -36,4 +41,6 @@ void main() {
     print(barangterpilih[i]);
     i++;
   });
+
+  stdout.write("Total Bawaan: ${isi} kg");
 }
