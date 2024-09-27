@@ -4,7 +4,7 @@ import 'loop.dart';
 void main() {
   int i = 0;
   List<String> antrian = []; // Membuat array untuk menampung nama-nama
-  stdout.write("Masukkan nama-nama antrian sesuai urutan kedatangan");
+  stdout.write("Masukkan nama-nama antrian sesuai urutan kedatangan\n");
   loop(() => i < 5, () {
     stdout.write("Nama ${i+1}: ");
     String? nama = stdin.readLineSync(); // Membaca input dari user
